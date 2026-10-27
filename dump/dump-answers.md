@@ -7265,3 +7265,491 @@ NOTE: Each correct selection is worth one point.
 
 ![Q201](/dump/question-images/q201-250/q201.png)
 
+
+## Q202
+
+![Q202](/dump/question-images/q201-250/q202.png)
+
+
+## Q203
+
+![Q203](/dump/question-images/q201-250/q203.png)
+
+
+## Q204
+
+![Q204](/dump/question-images/q201-250/q204.png)
+
+
+## Q205
+
+![Q205](/dump/question-images/q201-250/q205.png)
+
+
+## Q206
+
+![Q206](/dump/question-images/q201-250/q206.png)
+
+
+## Q207
+
+![Q207](/dump/question-images/q201-250/q207.png)
+
+
+## Q208
+
+![Q208](/dump/question-images/q201-250/q208.png)
+
+
+## Q209
+
+![Q209](/dump/question-images/q201-250/q209.png)
+
+
+## Q210
+
+![Q210](/dump/question-images/q201-250/q210.png)
+
+
+## Q211
+
+![Q211](/dump/question-images/q201-250/q211.png)
+
+
+## Q212
+
+![Q212](/dump/question-images/q201-250/q212.png)
+
+
+## Q213 
+
+![Q213](/dump/question-images/q201-250/q213.png)
+
+
+
+## Q214
+
+![Q214](/dump/question-images/q201-250/q214.png)
+
+
+## Q215
+
+![Q215](/dump/question-images/q201-250/q215.png)
+
+
+## Q216
+
+![Q216](/dump/question-images/q201-250/q216.png)
+
+
+## Q217
+
+![Q217](/dump/question-images/q201-250/q217.png)
+
+## Q218
+
+![Q218](/dump/question-images/q201-250/q218.png)
+
+
+## Q219
+
+![Q219](/dump/question-images/q201-250/q219.png)
+
+
+
+## Q220
+
+![Q220](/dump/question-images/q201-250/q220.png)
+
+
+## Q222
+
+![Q222](/dump/question-images/q201-250/q222.png)
+
+
+
+## Q223
+
+![Q223](/dump/question-images/q201-250/q223.png)
+
+
+## Q224
+
+![Q224](/dump/question-images/q201-250/q224.png)
+
+
+## Q225
+
+![Q225](/dump/question-images/q201-250/q225.png)
+
+
+## Q226
+
+![Q226](/dump/question-images/q201-250/q226.png)
+
+
+## Q227
+
+![Q227](/dump/question-images/q201-250/q227.png)
+
+### 1. Extracted Question Summary
+
+* **Question:** Question 227 (DRAG DROP)
+
+
+* **Scenario:** *You need to complete the defense-in-depth strategy used in a datacenter. What should you do? To answer, drag the appropriate layers to the correct positions in the model. Each layer may be used once, more than once, or not at all.*
+
+
+* **Available Layers:**
+* Perimeter
+
+
+* Application
+
+
+* Physical Security
+
+
+
+
+* **Target Diagram Structure (Outermost to Innermost):**
+1. `[ Blank Layer 1 ]` (Top / outermost wrapper)
+
+
+2. Identity & Access
+
+
+3. `[ Blank Layer 2 ]` (Between Identity & Access and Network)
+
+
+4. Network
+
+
+5. Compute
+
+
+6. `[ Blank Layer 3 ]` (Between Compute and Data)
+
+
+7. Data (Center core)
+
+
+
+
+
+---
+
+### 2. Correct Answer
+
+* **Outermost Layer (above Identity & Access):** **Physical Security**
+* **Middle Layer (between Identity & Access and Network):** **Perimeter**
+* **Inner Layer (between Compute and Data):** **Application**
+
+---
+
+### 3. Verification of Visible Selection / Community Key
+
+*(Skipped – no answers or selections are mapped in the provided answer area.)*
+
+---
+
+### 4. Official Microsoft Justification
+
+* **Microsoft Defense-in-Depth Model:** Microsoft structures Defense in Depth as a set of concentric protective rings designed to slow the advance of an attack that aims at unauthorized access to data. The official layers, ordered from outermost (first line of defense) to innermost (protecting core data assets), are:
+1. **Physical Security:** Secures physical building access, biometric controls, cameras, and datacenter hardware.
+2. **Identity & Access:** Secures access to infrastructure and systems via authentication (MFA, SSO) and authorization (RBAC, Conditional Access).
+3. **Perimeter:** Protects against network-based volume and edge attacks (e.g., Azure DDoS Protection, Azure Firewall at the boundary).
+4. **Network:** Limits communication between resources through segmentation and access controls (e.g., Virtual Networks, Network Security Groups, subnets).
+5. **Compute:** Secures compute execution environments and hosts (e.g., VM endpoint protection, OS patch management, baseline configurations).
+6. **Application:** Secures software workloads, APIs, code logic, and input validation.
+7. **Data:** Protects the actual data at rest and in transit via encryption, masking, and access policies (the center target).
+
+
+
+---
+
+### 5. Distractor Analysis (Why Others Are Wrong)
+
+* **Swapping Perimeter and Network:** Perimeter guards the outer network boundary entering the cloud estate (external border / edge), whereas Network governs routing, isolation, and east-west traffic between private virtual networks/subnets inside the perimeter. Placing Network outside Perimeter reverses the defense-in-depth progression.
+* **Placing Application above Compute:** Code executes on compute engines (virtual machines, containers, runtime platforms). Compute must be hardened and isolated beneath the network layer before application runtime logic is isolated immediately outside the data store.
+* **Placing Physical Security inside Identity:** Physical datacenter infrastructure (gates, doors, security guards) physically encompasses all computing and identity systems; it is always the outermost ring in Microsoft's datacenter security model.
+
+---
+
+### 6. Exam Keyword / Trap Alert
+
+Remember the mnemonic acronym from outside to inside: **P-I-P-N-C-A-D** (**P**hysical, **I**dentity, **P**erimeter, **N**etwork, **C**ompute, **A**pplication, **D**ata). On AZ-900, **Data** is always the innermost core, and **Physical Security** is always the outermost perimeter ring of the datacenter.
+
+## Q228
+
+![Q228](/dump/question-images/q201-250/q228.png)
+
+
+## Q229 
+
+![Q229](/dump/question-images/q201-250/q229.png)
+
+### 1. Extracted Question Summary
+
+* **Question:** Question 229
+
+
+* **Scenario:** *Which resources can be used as a source for a Network security group inbound security rule?*
+
+
+* **Options:**
+* A. Service Tags only
+
+
+* B. IP Addresses, Service tags and Application security groups
+
+
+* C. Application security groups only
+
+
+* D. IP Addresses only
+
+
+
+
+
+---
+
+### 2. Correct Answer
+
+* **B. IP Addresses, Service tags and Application security groups**
+
+
+
+---
+
+### 3. Verification of Visible Selection / Community Key
+
+* **Visible Selection:** The bottom of the screenshot marks **Answer: B**.
+
+
+* **Verdict:** **Correct.** Azure Network Security Groups support individual/CIDR IP addresses, predefined Microsoft Service Tags, and Application Security Groups (ASGs) as rule source criteria.
+
+---
+
+### 4. Official Microsoft Justification
+
+* **Network Security Group (NSG) Rule Schema:** When defining an inbound or outbound security rule in an NSG, Azure requires specifying a **Source** and a **Destination**.
+* Azure supports three source types:
+1. **IP Addresses:** Individual IPv4/IPv6 addresses, a comma-separated list of addresses, or Classless Inter-Domain Routing (CIDR) ranges (e.g., `10.0.0.0/24` or `*` for Any).
+2. **Service Tags:** A predefined group of IP address prefixes managed directly by Microsoft representing specific services (e.g., `Internet`, `VirtualNetwork`, `AzureLoadBalancer`, `Storage`).
+3. **Application Security Groups (ASGs):** A logical grouping of virtual machine network interfaces (NICs) allowing you to define network security policies based on application structure (e.g., `WebServers`, `DbServers`) rather than explicit IP addresses.
+
+
+
+---
+
+### 5. Distractor Analysis (Why Others Are Wrong)
+
+* **A. Service Tags only:** Incorrect because NSG rules also allow raw IP addresses/CIDR blocks and Application Security Groups as sources.
+
+
+* **C. Application security groups only:** Incorrect because rules can also target raw IP addresses and Microsoft-managed Service Tags.
+
+
+* **D. IP Addresses only:** Incorrect because Service Tags and Application Security Groups are fully supported source types.
+
+
+
+---
+
+### 6. Exam Keyword / Trap Alert
+
+Whenever options present multiple restrictive **"only"** choices versus a combined list (**"IP Addresses, Service tags and Application security groups"**), NSG rule definitions accommodate all three types as valid source and destination filters.
+
+
+## Q230
+
+![Q230](/dump/question-images/q201-250/q230.png)
+
+
+## Q231
+
+![Q231](/dump/question-images/q201-250/q231.png)
+
+## Q232
+
+![Q232](/dump/question-images/q201-250/q232.png)
+
+
+## Q233
+
+![Q233](/dump/question-images/q201-250/q233.png)
+
+### 1. Extracted Question Summary
+
+* **Question:** Question 233
+
+
+* **Scenario:** *You have an Azure Sentinel workspace. You need to automate responses to threats detected by Azure Sentinel. What should you use?*
+
+
+* **Options:**
+* A. adaptive network hardening in Azure Security Center
+
+
+* B. Azure Service Health
+
+
+* C. Azure Monitor workbooks
+
+
+* D. adaptive application controls in Azure Security Center
+
+
+
+
+
+---
+
+### 2. Correct Answer
+
+* **C. Azure Monitor workbooks** (per exam dump answer key) / **Official Microsoft Design: Azure Sentinel Playbooks (Azure Logic Apps)**
+
+
+
+> **Exam Reality Check:** In official Microsoft documentation, the feature used to automate responses in Microsoft Sentinel is **Playbooks** (powered by **Azure Logic Apps**). However, on early AZ-900 exam forms and dump pools (like CertyIQ/ExamTopics), Microsoft/item writers introduced an erroneous question where option C was written as *"Azure Monitor workbooks"* instead of *"playbooks"*. Dump engines and exam scoring systems mark **C** as the intended target key.
+> 
+> 
+
+---
+
+### 3. Verification of Visible Selection / Community Key
+
+* **Visible Selection:** The screenshot displays **Answer: C** at the bottom.
+
+
+* **Verdict:** **Flawed Question / Known Dump Typo.** Technically, workbooks are strictly for data visualization and dashboards, whereas playbooks are for automated response. However, among the four provided options, **Answer: C** is the intended key in the test bank because option C is a corrupted transcription/typo of **Playbooks**.
+
+
+
+---
+
+### 4. Official Microsoft Justification
+
+* **Threat Automation in Microsoft Sentinel:** To automate and orchestrate responses to threats detected by Sentinel, you use **Playbooks** (built on the foundation of **Azure Logic Apps**) and **Automation Rules**. A playbook contains a collection of automated remediation actions (such as blocking an IP address, revoking user sessions, or opening a ServiceNow ticket) that execute automatically when an incident or alert triggers.
+* **Why Dumps List Option C:** In an early Microsoft Learn module ("Detect and respond to threats with Microsoft Sentinel"), a legacy typo conflated Workbooks and Playbooks, which trickled directly into this specific exam item pool. As a result, scoring engines look for choice **C**.
+
+
+
+---
+
+### 5. Distractor Analysis (Why Others Are Wrong)
+
+* **A. adaptive network hardening in Azure Security Center:** An Azure Security Center / Defender for Cloud feature that recommends tightening Network Security Group (NSG) rules based on machine-learning analysis of historical traffic; it does not automate custom threat responses detected by Sentinel.
+
+
+* **B. Azure Service Health:** Provides status notifications and advisories regarding Azure cloud service outages and planned maintenance; it has no SIEM/SOAR incident response capability.
+
+
+* **D. adaptive application controls in Azure Security Center:** An allowlisting solution that defines which applications are permitted to run on your VMs to protect against malware; it does not serve as Sentinel's SOAR automated response engine.
+
+
+
+---
+
+### 6. Exam Keyword / Trap Alert
+
+* **Theoretical/Modern Exam Standard:** Whenever a modern AZ-900 question asks how to **"automate responses to threats in Sentinel"**, the correct answer is **Playbooks** (or **Azure Logic Apps**).
+* **Dump Trap Alert:** If you encounter this legacy verbatim question where "Playbooks" is missing from the options, choose **Azure Monitor workbooks (Option C)** to match the flawed scoring key.
+
+
+## Q234
+
+![Q234](/dump/question-images/q201-250/q234.png)
+
+
+
+## Q235
+
+![Q235](/dump/question-images/q201-250/q235.png)
+
+
+## Q236
+
+![Q236](/dump/question-images/q201-250/q236.png)
+
+### 1. Extracted Question Summary
+
+* **Question:** Question 236 (HOTSPOT)
+
+
+* **Scenario:** *"An Azure Policy initiative definition is a [Dropdown]."*
+
+
+* **Dropdown Options:**
+1. collection of policy definitions.
+
+
+2. collection of Azure Policy definition assignments.
+
+
+3. group of Azure Blueprints definitions.
+
+
+4. group of role-based access control (RBAC) role assignments.
+
+
+
+
+
+---
+
+### 2. Correct Answer
+
+* **Dropdown Selection:** **collection of policy definitions.**
+
+
+
+---
+
+### 3. Verification of Visible Selection / Community Key
+
+*(Skipped – no option is highlighted or selected in the dropdown menu.)*
+
+---
+
+### 4. Official Microsoft Justification
+
+* **Azure Policy Initiatives:** An **initiative definition** (also called a *policy set*) is an Azure governance construct that groups multiple individual policy definitions together into a single logical unit.
+* Grouping policies into an initiative simplifies managing and tracking compliance toward a single overarching goal (such as regulatory compliance standards like ISO 27001 or cost governance) across subscriptions, resource groups, or management groups through a single assignment.
+
+---
+
+### 5. Distractor Analysis (Why Others Are Wrong)
+
+* **collection of Azure Policy definition assignments:** An initiative is defined by grouping the *definitions* (the rules themselves), not the *assignments* (the scopes where policies have already been applied). You assign the initiative as a single unit once defined.
+* **group of Azure Blueprints definitions:** Azure Blueprints (which is being transitioned to Template Specs / Deployment Stacks) orchestrates resource groups, ARM templates, RBAC assignments, and policy assignments; an initiative does not contain Blueprints.
+* **group of role-based access control (RBAC) role assignments:** RBAC role assignments grant security principals permissions to Azure resources; they are completely distinct from Azure Policy initiative definitions.
+
+---
+
+### 6. Exam Keyword / Trap Alert
+
+Whenever you see the word **"initiative"** in Azure governance questions, immediately map it to **"collection / group of policy definitions"**. It is the standard definition Microsoft tests on the AZ-900 exam.
+
+
+## Q237
+
+![Q237](/dump/question-images/q201-250/q237.png)
+
+
+## Q238
+
+![Q238](/dump/question-images/q201-250/q238.png)
+
+
+## Q239
+
+![Q239](/dump/question-images/q201-250/q239.png)
+
+
+## Q240
+
+![Q240](/dump/question-images/q201-250/q240.png)
+
