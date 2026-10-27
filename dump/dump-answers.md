@@ -7043,3 +7043,225 @@ $\longrightarrow$ **Yes**, via **Azure Cloud Shell**, which runs in a browser an
 
 ![Q177](/dump/question-images/q151-200/q177.png)
 
+
+## Q178
+
+![Q178](/dump/question-images/q151-200/q178.png)
+
+
+## Q179
+
+![Q179](/dump/question-images/q151-200/q179.png)
+
+
+## Q180
+
+![Q180](/dump/question-images/q151-200/q180.png)
+
+
+
+## Q181
+
+![Q181](/dump/question-images/q151-200/q181.png)
+
+
+## Q182
+
+![Q182](/dump/question-images/q151-200/q182.png)
+
+
+## Q183
+
+![Q183](/dump/question-images/q151-200/q183.png)
+
+
+## Q184
+
+![Q184](/dump/question-images/q151-200/q184.png)
+
+
+## Q185
+
+![Q185](/dump/question-images/q151-200/q185.png)
+
+
+## Q186
+
+![Q186](/dump/question-images/q151-200/q186.png)
+
+
+
+## Q187
+
+![Q187](/dump/question-images/q151-200/q187.png)
+
+
+
+## Q188
+
+![Q188](/dump/question-images/q151-200/q188.png)
+
+
+## Q189
+
+![Q189](/dump/question-images/q151-200/q189.png)
+
+
+## Q190
+
+![Q190](/dump/question-images/q151-200/q190.png)
+
+
+## Q191
+
+![Q191](/dump/question-images/q151-200/q191.png)
+
+
+
+## Q192
+
+![Q192](/dump/question-images/q151-200/q192.png)
+
+
+## Q193
+
+![Q193](/dump/question-images/q151-200/q193.png)
+
+
+
+## Q194
+
+![Q194](/dump/question-images/q151-200/q194.png)
+
+
+## Q195
+
+![Q195](/dump/question-images/q151-200/q195.png)
+
+
+## Q196
+
+![Q196](/dump/question-images/q151-200/q196.png)
+
+
+
+## Q197
+
+![Q197](/dump/question-images/q151-200/q197.png)
+
+
+
+## Q198
+
+![Q198](/dump/question-images/q151-200/q198.png)
+
+
+## Q199
+
+![Q199](/dump/question-images/q151-200/q199.png)
+
+### 1. Extracted Question Summary
+
+**Question 199 (HOTSPOT):**
+
+Which node in the Azure portal should you use to assign a user the Reader role for a resource group? To answer, select the node in the answer area.
+
+NOTE: Each correct selection is worth one point.
+
+**Hot Area Nodes:**
+
+* `Overview`
+
+
+* `Activity log`
+
+
+* `Access control (IAM)`
+
+
+* `Tags`
+
+
+* `Resource visualizer`
+
+
+* `Events`
+
+
+* `Resource costs`
+
+
+* `Deployments`
+
+
+* `Security`
+
+
+* `Policies`
+
+
+* `Properties`
+
+
+
+---
+
+### 2. Correct Answer
+
+**Access control (IAM)**
+
+---
+
+### 3. Verification of Visible Selection / Community Key
+
+*(Section skipped: No node or option is selected, checked, or boxed in the provided image; the answer area options and bottom Answer field are blank.)*
+
+---
+
+### 4. Official Microsoft Justification
+
+* Azure uses **Azure role-based access control (Azure RBAC)** to manage fine-grained authorization to Azure resources.
+* Every resource group, subscription, management group, and individual resource blade in the Azure portal features an **Access control (IAM)** blade.
+* To grant access permissions—such as assigning the built-in **Reader**, **Contributor**, or **Owner** role to a user, group, or service principal at that resource group scope—you navigate to **Access control (IAM)** $\longrightarrow$ **Add** $\longrightarrow$ **Add role assignment**.
+
+---
+
+### 5. Distractor Analysis (Why Others Are Wrong)
+
+* **Overview:** Displays high-level metadata (subscription, location, resource group ID) and a list of contained resources; it does not assign RBAC permissions.
+
+
+* **Activity log:** Audits past management plane operations (who performed what action and when); it is for auditing and compliance, not granting permissions.
+
+
+* **Tags:** Applies key-value metadata to organize, categorize, and track billing for resources; it does not control access permissions.
+
+
+* **Policies:** Assigns Azure Policy definitions to enforce compliance standards (e.g., allowed locations, required tags); it does not assign user roles like Reader.
+
+
+* **Security:** Links to Microsoft Defender for Cloud recommendations for the resource group; role assignments are not managed here.
+
+
+* **Deployments / Properties / Resource costs:** Used to inspect ARM deployment history, technical object identifiers, and cost analysis, respectively.
+
+
+
+---
+
+### 6. Exam Keyword / Trap Alert
+
+* **"Assign a role (Reader / Contributor / Owner)"** or **"Manage permissions / RBAC"** $\longrightarrow$ Always points to **Access control (IAM)**.
+
+
+* Do not confuse **Azure RBAC via Access control (IAM)** (which answers *who has access to perform actions*) with **Policies** (which answers *what resource configurations and compliance rules are allowed*).
+
+## Q200
+
+![Q200](/dump/question-images/q151-200/q200.png)
+
+
+## Q201
+
+![Q201](/dump/question-images/q201-250/q201.png)
+
