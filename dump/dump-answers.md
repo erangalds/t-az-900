@@ -7753,3 +7753,352 @@ Whenever you see the word **"initiative"** in Azure governance questions, immedi
 
 ![Q240](/dump/question-images/q201-250/q240.png)
 
+## Q241
+
+![Q241](/dump/question-images/q201-250/q241.png)
+
+
+## Q242
+
+![Q242](/dump/question-images/q201-250/q242.png)
+
+
+## Q243
+
+![Q243](/dump/question-images/q201-250/q243.png)
+
+
+## Q244
+
+![Q244](/dump/question-images/q201-250/q244.png)
+
+
+## Q245
+
+![Q245](/dump/question-images/q201-250/q245.png)
+
+
+## Q246
+
+![Q246](/dump/question-images/q201-250/q246.png)
+
+
+## Q247
+
+![Q247](/dump/question-images/q201-250/q247.png)
+
+
+## Q248
+
+![Q248](/dump/question-images/q201-250/q248.png)
+
+
+## Q249
+
+![Q249](/dump/question-images/q201-250/q249.png)
+
+### 1. Extracted Question Summary
+
+**Question: 249 (HOTSPOT)**
+
+You plan to implement several security services for an Azure environment. You need to identify which Azure services must be used to meet the following security requirements:
+
+* Monitor threats by using sensors
+
+
+* Enforce Azure Multi-Factor Authentication (MFA) based on a condition
+
+
+
+Which Azure service should you identify for each requirement? To answer, select the appropriate options in the answer area.
+
+NOTE: Each correct selection is worth one point.
+
+**Answer Area Dropdowns:**
+
+1. **Monitor threats by using sensors:**
+[ Azure Monitor | Azure Security Center | Azure Active Directory (Azure AD) Identity Protection | Azure Advanced Threat Protection (ATP) ]
+
+
+2. **Enforce Azure MFA based on a condition:**
+[ Azure Monitor | Azure Security Center | Azure Active Directory (Azure AD) Identity Protection | Azure Advanced Threat Protection (ATP) ]
+
+
+
+*(Note: Legacy naming appears in this question. Azure Advanced Threat Protection is now **Microsoft Defender for Identity**, Azure Security Center is now **Microsoft Defender for Cloud**, and Azure AD Identity Protection is now **Microsoft Entra ID Protection**).*
+
+---
+
+### 2. Correct Answer
+
+* **Monitor threats by using sensors:** **Azure Advanced Threat Protection (ATP)**
+* **Enforce Azure MFA based on a condition:** **Azure Active Directory (Azure AD) Identity Protection**
+
+---
+
+### 3. Verification of Visible Selection / Community Key
+
+*(Section skipped: No options or community keys are pre-selected, checked, or marked in the uploaded screenshot.)*
+
+---
+
+### 4. Official Microsoft Justification
+
+* **Azure Advanced Threat Protection (ATP / Defender for Identity):**
+Azure ATP monitors on-premises Active Directory domain controllers for suspicious activity, credential harvesting, lateral movement, and advanced persistent threats. It accomplishes this specifically through **Azure ATP sensors** (installed directly onto domain controllers or deployed as standalone sensors capturing mirrored network traffic).
+* **Azure Active Directory (Azure AD) Identity Protection (Microsoft Entra ID Protection):**
+Identity Protection detects identity-based risks and automates remediation. It integrates directly with Conditional Access to evaluate conditions—specifically **user risk** (e.g., leaked credentials) and **sign-in risk** (e.g., unfamiliar location, impossible travel, anonymous IP address)—to conditionally enforce **Multi-Factor Authentication (MFA)** or trigger self-service password resets.
+
+---
+
+### 5. Distractor Analysis (Why Others Are Wrong)
+
+* **Azure Monitor:** A centralized monitoring platform for collecting and analyzing performance telemetry, activity logs, and metric data; it does not deploy identity/threat sensors to monitor domain controller traffic or enforce risk-based MFA.
+* **Azure Security Center (Defender for Cloud):** Protects cloud workloads and evaluates security posture (Secure Score). It monitors servers using Log Analytics agents / Defender extensions rather than identity threat "sensors," and it does not configure directory conditional MFA rules.
+
+
+* **Why Azure ATP is wrong for MFA:** ATP is purely a detection, behavioral analysis, and threat investigation service; it does not issue authentication tokens or enforce conditional MFA policies.
+
+---
+
+### 6. Exam Keyword / Trap Alert
+
+* **"Threats by using sensors"** $\longrightarrow$ **Azure ATP (Microsoft Defender for Identity)** (sensors on Domain Controllers are the signature architectural component).
+* **"Enforce MFA based on a condition / sign-in risk"** $\longrightarrow$ **Azure AD Identity Protection (Microsoft Entra ID Protection)** / **Conditional Access**.
+
+**Azure ATP** (now called **Microsoft Defender for Identity**) uses lightweight software agents termed **sensors** that sit directly on your identity servers.
+
+Instead of requiring you to configure complex network taps or port mirroring, the sensor installs directly inside the Windows Server operating system running Active Directory Domain Services (AD DS) or Active Directory Federation Services (AD FS).
+
+---
+
+### What Does the Sensor Actually Do?
+
+Once installed on a Domain Controller (DC), the sensor operates quietly in the background:
+
+1. **Inspects Network Traffic Locally:** It parses inbound and outbound authentication and directory traffic hitting the DC (Kerberos, NTLM, RPC, DNS, LDAP/LDAPS) without needing a dedicated physical appliance.
+2. **Reads Windows Event Logs:** It tracks specific Windows Security Events (such as event IDs `4768` for Kerberos TGT requests, `4769` for service tickets, or `4776` for NTLM authentication).
+3. **Monitors ETW (Event Tracing for Windows):** It listens to low-level OS kernel events to detect code injection or unauthorized memory access directly on the DC.
+4. **Streams Telemetry to the Cloud:** It parses this data locally, strips sensitive payload content, and streams lightweight behavioral telemetry over HTTPS (outbound port 443) to the Defender for Identity cloud service for machine learning analysis.
+
+---
+
+### Concrete Examples of What It Detects
+
+When an attacker breaches an internal corporate network, their goal is almost always to compromise the Domain Controller or escalate privileges to Domain Admin. The sensor spots this activity at the source:
+
+#### 1. Reconnaissance & Enumeration (BloodHound / LDAP Recon)
+
+* **What happens:** An attacker uses a tool like BloodHound or Sharphound to rapidly query Active Directory via LDAP, mapping out every Domain Admin account, high-privilege group, and computer object.
+* **How the sensor detects it:** The sensor notices an anomalous spike in LDAP search queries with broad filters (e.g., querying all user objects, SPNs, and nested security groups in a matter of seconds) originating from a standard user workstation.
+
+#### 2. Credential Theft (Kerberoasting)
+
+* **What happens:** An attacker requests Kerberos Service Tickets (TGS) for service accounts with weak passwords so they can crack the hashes offline (Kerberoasting).
+* **How the sensor detects it:** The sensor reads the incoming Kerberos requests (Event 4769) and flags when a non-administrative user suddenly requests hundreds of service tickets with RC4 encryption within a few seconds.
+
+#### 3. Lateral Movement & DCSync Attacks
+
+* **What happens:** An attacker who has gained local admin access attempts to impersonate a domain controller using the Directory Replication Service Remote Protocol (MS-DRSR) to pull password hashes directly from `NTDS.dit` (a DCSync attack via Mimikatz).
+* **How the sensor detects it:** The sensor monitors replication RPC calls (`DsGetNCChanges`) hitting the DC. If that replication request originates from a normal IP address rather than another registered Domain Controller, the sensor triggers a critical severity alert.
+
+#### 4. Domain Dominance (Golden Ticket Injection)
+
+* **What happens:** An attacker steals the `KRBTGT` account hash and fabricates a forged Kerberos Ticket-Granting Ticket (TGT) granting themselves indefinite Domain Admin access.
+* **How the sensor detects it:** When the forged ticket is presented to access a domain resource, the sensor examines the ticket structure, nonces, and timestamp lifecycles, identifying that the ticket was not actually generated by a legitimate domain controller.
+
+---
+
+### Why Direct Installation Matters (Sensor vs. Standalone)
+
+* **Azure ATP Sensor (Direct):** Installs as a service directly on the DC. It consumes minimal CPU/RAM (~1–5%), requires no extra hardware or virtual machines, and automatically decrypts encrypted loopback and local traffic.
+* **Azure ATP Standalone Sensor:** An alternative architecture where you deploy a separate Windows VM/server and set up physical switch **port mirroring (SPAN)** to feed a copy of all DC network traffic into that separate box. This is rarely used today because direct installation is far simpler to deploy and maintain.
+
+
+## Q250
+
+![Q250](/dump/question-images/q201-250/q250.png)
+
+
+
+## Q251
+
+![Q251](/dump/question-images/q251-300/q251.png)
+
+
+
+## Q252
+
+![Q252](/dump/question-images/q251-300/q252.png)
+
+
+
+## Q253
+
+![Q253](/dump/question-images/q251-300/q253.png)
+
+### 1. Extracted Question Summary
+
+**Question 253:**
+
+You have an Azure environment that contains 10 virtual networks and 100 virtual machines.
+
+You need to limit the amount of inbound traffic to all the Azure virtual networks.
+
+What should you create?
+
+* **A.** one application security group (ASG)
+
+
+* **B.** 10 virtual network gateways
+
+
+* **C.** 10 Azure ExpressRoute circuits
+
+
+* **D.** one Azure firewall
+
+
+
+---
+
+### 2. Correct Answer
+
+**D: one Azure firewall**
+
+---
+
+### 3. Verification of Visible Selection / Community Key
+
+**Correct.** The visible answer key at the bottom shows **Answer: D**. In a standard hub-and-spoke topology, a single central Azure Firewall deployed in the hub virtual network can filter and restrict inbound network traffic across all peered spoke virtual networks.
+
+---
+
+### 4. Official Microsoft Justification
+
+* **Centralized Network Security Architecture (Hub-and-Spoke):** Microsoft recommends deploying a **hub-and-spoke network topology** to manage security across multiple virtual networks centrally.
+* In this architecture, **one Azure Firewall** is provisioned within a dedicated subnet (`AzureFirewallSubnet`) inside the central "hub" VNet. All 10 virtual networks ("spokes") are connected to this hub via Virtual Network Peering, with User-Defined Routes (UDRs) directing all inbound internet traffic through the single Azure Firewall for stateful inspection and filtering before reaching any of the 100 virtual machines.
+
+---
+
+### 5. Distractor Analysis (Why Others Are Wrong)
+
+* **A. one application security group (ASG):** ASGs are regional objects bound to a single virtual network; a single ASG cannot span multiple VNets to control traffic across 10 distinct virtual networks.
+* **B. 10 virtual network gateways:** Virtual network gateways establish Site-to-Site VPN connections or ExpressRoute links; they do not filter or inspect inbound application/network traffic like a firewall.
+* **C. 10 Azure ExpressRoute circuits:** ExpressRoute provides dedicated, private Layer 3 connectivity between on-premises infrastructure and Azure; it does not restrict or filter inbound traffic.
+
+---
+
+### 6. Exam Keyword / Trap Alert
+
+* **"Multiple virtual networks / spoke VNets" + "Centralized inbound traffic filtering"** $\longrightarrow$ **one Azure Firewall** (via Hub-and-Spoke peering).
+* **Trap:** Watch out for options suggesting individual Network Security Groups (NSGs) or ASGs for multi-VNet centralized filtering—NSGs and ASGs cannot span across multiple virtual networks natively.
+
+
+## Q254
+
+![Q254](/dump/question-images/q251-300/q254.png)
+
+
+## Q255
+
+![Q255](/dump/question-images/q251-300/q255.png)
+
+
+## Q256
+
+![Q](/dump/question-images/q251-300/q256.png)
+
+
+## Q257
+
+![Q257](/dump/question-images/q251-300/q257.png)
+
+
+## Q258
+
+![Q258](/dump/question-images/q251-300/q258.png)
+
+
+
+## Q259
+
+![Q259](/dump/question-images/q251-300/q259.png)
+
+
+## Q260
+
+![Q260](/dump/question-images/q251-300/q260.png)
+
+
+## Q261
+
+![Q261](/dump/question-images/q251-300/q261.png)
+
+
+
+## Q262
+
+![Q262](/dump/question-images/q251-300/q262.png)
+
+
+
+## Q263
+
+![Q263](/dump/question-images/q251-300/q263.png)
+
+
+
+## Q264
+
+![Q264](/dump/question-images/q251-300/q264.png)
+
+
+
+## Q265
+
+![Q265](/dump/question-images/q251-300/q265.png)
+
+
+
+## Q266
+
+![Q266](/dump/question-images/q251-300/q266.png)
+
+
+
+## Q267
+
+![Q267](/dump/question-images/q251-300/q267.png)
+
+
+## Q268
+
+![Q268](/dump/question-images/q251-300/q268.png)
+
+
+## Q269
+
+![Q269](/dump/question-images/q251-300/q269.png)
+
+
+
+## Q270
+
+![Q270](/dump/question-images/q251-300/q270.png)
+
+
+
+## Q271
+
+![Q271](/dump/question-images/q251-300/q271.png)
+
+
+## Q272
+
+![Q272](/dump/question-images/q251-300/q272.png)
+
+
+## Q273
+
+![Q273](/dump/question-images/q251-300/q273.png)

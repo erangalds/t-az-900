@@ -457,3 +457,205 @@ Regardless of a user's Role-Based Access Control (RBAC) permissions—even if th
 ![Q304](/dump/question-images/q301-350/q304.png)
 
 
+## Q305
+
+![Q305](/dump/question-images/q301-350/q305.png)
+
+
+## Q306
+
+![Q306](/dump/question-images/q301-350/q306.png)
+
+
+
+## Q307
+
+![Q307](/dump/question-images/q301-350/q307.png)
+
+
+## Q308
+
+![Q308](/dump/question-images/q301-350/q308.png)
+
+
+
+## Q309
+
+![Q309](/dump/question-images/q301-350/q309.png)
+
+
+## Q310
+
+![Q310](/dump/question-images/q301-350/q310.png)
+
+## Q311
+
+![Q311](/dump/question-images/q301-350/q311.png)
+
+
+## Q312
+
+![Q312](/dump/question-images/q301-350/q312.png)
+
+
+
+## Q313
+
+![Q313](/dump/question-images/q301-350/q313.png)
+
+
+
+## Q314
+
+![Q314](/dump/question-images/q301-350/q314.png)
+
+
+
+## Q315
+
+![Q315](/dump/question-images/q301-350/q315.png)
+
+
+
+## Q316
+
+![Q316](/dump/question-images/q301-350/q316.png)
+
+
+
+## Q317
+
+![Q317](/dump/question-images/q301-350/q317.png)
+
+
+
+## Q318
+
+![Q318](/dump/question-images/q301-350/q318.png)
+
+
+## Q319
+
+![Q319](/dump/question-images/q301-350/q319.png)
+
+
+
+## Q320
+
+![Q320](/dump/question-images/q301-350/q320.png)
+
+
+
+## Q321
+
+![Q321](/dump/question-images/q301-350/q321.png)
+
+
+
+## Q322
+
+![Q322](/dump/question-images/q301-350/q322.png)
+
+
+## Q323
+
+![Q323](/dump/question-images/q301-350/q323.png)
+
+
+
+## Q324
+
+![Q324](/dump/question-images/q301-350/q324.png)
+
+
+## Q325
+
+![Q325](/dump/question-images/q301-350/q325.png)
+
+### 1. Extracted Question Summary
+
+**Question: 325 (HOTSPOT)**
+
+To complete the sentence, select the appropriate option in the answer area.
+
+* **Scenario:** You have an application that is comprised of an Azure web app that has a Service Level Agreement (SLA) of 99.95 percent and an Azure SQL database that has an SLA of 99.99 percent.
+
+
+* **Statement:** The composite SLA for the application is [ Dropdown ]
+
+
+* **Dropdown Options:**
+
+
+* `the product of both SLAs, which equals 99.94 percent`
+
+
+* `the lowest SLA associated to the application, which is 99.95 percent`
+
+
+* `the highest SLA associated to the application, which is 99.99 percent`
+
+
+* `the difference between the two SLAs, which is 0.05 percent`
+
+
+
+
+
+---
+
+### 2. Correct Answer
+
+* **Dropdown Selection:** **the product of both SLAs, which equals 99.94 percent**
+
+
+
+---
+
+### 3. Verification of Visible Selection / Community Key
+
+*(Skipped — no specific option is outlined or selected in the dropdown)*
+
+---
+
+### 4. Official Microsoft Justification
+
+* **Composite SLA Calculation:** When an application relies on two independent services in serial (meaning if either service fails, the entire application fails), the overall availability is calculated by multiplying the individual service SLAs together:
+
+$$\text{Composite SLA} = \text{SLA}_{\text{Web App}} \times \text{SLA}_{\text{SQL DB}}$$
+
+
+$$0.9995 \times 0.9999 = 0.99940005 \approx 99.94\%$$
+
+
+* Because an outage in either service causes the entire application workflow to go down, the combined probability of failure increases, making the composite SLA lower than either individual component's SLA.
+
+---
+
+### 5. Distractor Analysis (Why Others Are Wrong)
+
+* **the lowest SLA associated to the application, which is 99.95 percent:** Incorrect. The application fails if *either* component experiences downtime; therefore, availability cannot simply match the lowest component's SLA because failures can occur independently across both services.
+
+
+* **the highest SLA associated to the application, which is 99.99 percent:** Incorrect. An architecture composed of serial dependencies can never be more reliable than its weakest link, let alone equal to its strongest link.
+
+
+* **the difference between the two SLAs, which is 0.05 percent:** Incorrect. Arithmetic subtraction is mathematically meaningless when computing joint probabilistic availability.
+
+
+
+---
+
+### 6. Exam Keyword / Trap Alert
+
+* For **Composite SLA** questions involving services in series, remember the rule: **multiply the SLAs** (the result will always be lower than the individual SLAs). Do not select the "minimum" SLA or subtract them.
+
+
+## Q326
+
+![Q326](/dump/question-images/q301-350/q326.png)
+
+
+## Q327
+
+![Q327](/dump/question-images/q301-350/q327.png)
