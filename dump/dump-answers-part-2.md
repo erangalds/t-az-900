@@ -1663,3 +1663,52 @@ You can deploy and lifecycle-manage common Kubernetes add-ons (such as Azure Key
 
 ## Q458
 ![Q458](/dump/question-images/q401-450/q458.png)
+
+An **Administrative Unit (AU)** in Microsoft Entra ID (formerly Azure AD) is a directory container used to restrict administrative permissions to a specific subset of users, groups, or devices within an organization.
+
+Without Administrative Units, Entra ID roles (like *User Administrator* or *Helpdesk Administrator*) are **tenant-wide**: assigning someone the User Administrator role means they can reset passwords, update profiles, and delete accounts for *every* employee in the global directory. Administrative Units allow implementing the **Principle of Least Privilege** across identity management by scoping those administrative roles to a boundary.
+
+---
+
+### Core Concept: How It Works
+
+* **Container for Directory Objects:** An AU contains a collection of Entra ID users, groups, or devices. Membership can be assigned manually or dynamically using rule-based criteria (dynamic membership requires Entra ID P1/P2).
+* **Scoped Role Assignment:** Instead of granting a directory role at the root tenant level, the role is assigned **scoped to the AU**.
+* **Boundary of Authority:** The delegated administrator can only manage the objects inside that specific AU. They have zero administrative privileges over users, devices, or groups outside of it.
+* **Restricted Management Units (RMUs):** Highly sensitive administrative units can be designated as "Restricted," preventing even Global Administrators from modifying objects inside the unit unless explicitly granted permissions inside that specific AU.
+
+---
+
+### Key Use Cases & Practical Examples
+
+#### 1. Geographically Dispersed Offices (Regional Delegation)
+
+* **Scenario:** A global enterprise has offices in London, Singapore, and New York. The New York IT team should handle user onboarding, password resets, and license assignments for local staff, but must not modify Singapore or London personnel records.
+* **Implementation:** Create an Administrative Unit named `AU-NorthAmerica-Users`. Assign the New York IT leads the **User Administrator** and **Helpdesk Administrator** roles *scoped to `AU-NorthAmerica-Users*`. They can only support staff in North America.
+
+#### 2. University Faculties & Academic Campuses
+
+* **Scenario:** A university IT department wants student lab coordinators in the School of Engineering to manage departmental student accounts without granting them control over faculty staff, medical school students, or university administration.
+* **Implementation:** Create `AU-Engineering-Students`. Add all engineering student identities to this unit. Grant the student coordinators the **Password Administrator** role scoped specifically to this AU.
+
+#### 3. Separate Autonomous Business Units / Subsidiaries
+
+* **Scenario:** A conglomerate operates multiple distinct subsidiaries under a single shared Microsoft 365 / Entra ID tenant (e.g., `Retail Division`, `Logistics Division`, and `Finance Division`).
+* **Implementation:** Instead of deploying multiple expensive independent tenants, the organization creates separate AUs for each business unit. Dedicated IT teams manage their own employees, distribution lists, and shared mailboxes within their respective AUs, ensuring operational autonomy.
+
+#### 4. Shared Device & Kiosk Management
+
+* **Scenario:** In retail storefronts or factory floors, frontline managers need to wipe, restart, or reassign shared tablet devices without accessing or managing corporate laptops or executive endpoints.
+* **Implementation:** Group factory floor devices into `AU-Factory-Devices`. Assign shift supervisors the **Intune Administrator** or **Cloud Device Administrator** role scoped to that AU. They can manage the factory floor hardware without affecting corporate workstations.
+
+---
+
+### AU vs. Other Azure Scopes
+
+| Feature | Scope / Target Layer | Primary Purpose |
+| --- | --- | --- |
+| **Administrative Unit (AU)** | **Microsoft Entra ID Objects** *(Users, Groups, Devices)* | Limits directory administration (password resets, group membership, device actions) to a boundary. |
+| **Management Group / Subscription / Resource Group** | **Azure Resource Manager (ARM)** *(VMs, VNets, Storage, SQL)* | Organizes cloud infrastructure resources and applies Azure RBAC, budgets, and Azure Policies. |
+
+Would you like to review how Administrative Units interact with dynamic membership rules, or continue with the next exam practice question?
+
