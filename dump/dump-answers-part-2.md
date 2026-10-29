@@ -797,3 +797,650 @@ $$0.9995 \times 0.9999 = 0.99940005 \approx 99.94\%$$
 ## Q352
 
 ![Q352](/dump/question-images/q301-350/q352.png)
+
+
+## Q353
+
+![Q353](/dump/question-images/q351-400/q353.png)
+
+
+
+
+## Q354
+
+![Q354](/dump/question-images/q351-400/q354.png)
+
+
+## Q355
+
+![Q355](/dump/question-images/q351-400/q355.png)
+
+
+
+## Q356
+
+![Q356](/dump/question-images/q351-400/q356.png)
+
+
+
+## Q357
+![Q357](/dump/question-images/q351-400/q357.png)
+
+
+
+## Q358
+
+![Q358](/dump/question-images/q351-400/q358.png)
+
+
+## Q359
+
+![Q359](/dump/question-images/q351-400/q359.png)
+
+
+
+
+## Q360
+
+![Q360](/dump/question-images/q351-400/q360.png)
+
+In Azure, the term **Spending Limit** refers to a very specific, hard-coded architectural feature designed to prevent credit exhaustion and unexpected credit card charges. It is fundamentally different from a **Budget**.
+
+---
+
+### 1. What the Azure Spending Limit Actually Is
+
+The **Spending Limit** is an automated circuit breaker tied exclusively to offer types that include complimentary or monthly credit benefits, such as:
+
+* Azure Free Accounts ($200 initial credit).
+* Visual Studio subscriptions ($50 to $150 monthly credit).
+* Microsoft Cloud Partner Program benefit subscriptions.
+
+When this feature is enabled:
+
+* The spending limit ceiling is mathematically locked to the exact value of your remaining credit allowance ($0 of out-of-pocket spend).
+* As long as your active services stay within the credit balance, they run normally.
+* The moment your resource utilization consumes the last dollar of the included credit, the spending limit triggers immediately.
+
+---
+
+### 2. How the Hard-Stop Works (The "Zero Beyond Credit" Rule)
+
+When the spending limit trips, Azure halts compute services immediately:
+
+* **Compute Services:** Virtual machines are forcibly transitioned into the **Stopped (deallocated)** state.
+* **Storage & Databases:** Disks and persistent storage accounts become read-only.
+* **Networking:** IP addresses detach and internet-facing endpoints become inaccessible.
+
+Nothing runs that could possibly incur a single cent of out-of-pocket charges against a connected credit card.
+
+---
+
+### 3. Why It Cannot Be Adjusted (Fixed vs. Custom)
+
+In the Azure portal under **Cost Management + Billing $\rightarrow$ Subscriptions $\rightarrow$ Spending Rate / Limit**:
+
+* There is no slider, text box, or field that allows an administrator to enter a value like:
+* *"Set spending limit to $50"*
+* *"Increase spending limit by $20"*
+
+
+* The control is strictly a **binary toggle**:
+1. **Limit Active:** Capped at the complimentary credit balance ($0 out-of-pocket).
+2. **Limit Removed (Turned Off):** Completely uncapped; transitions to standard consumption billing (Pay-As-You-Go rates for anything exceeding monthly credits).
+
+
+
+If an administrator removes the spending limit, they can choose to turn it back on starting from the beginning of the next monthly billing cycle (for Visual Studio benefit subscriptions), but they still cannot configure a custom amount.
+
+---
+
+### 4. The Exam Distinction: Spending Limit vs. Cost Management Budgets
+
+This is one of the most common concept traps in the AZ-900 exam. The question banks test whether you can separate the **native Spending Limit** from an **Azure Budget**:
+
+| Characteristic | Azure Spending Limit | Microsoft Cost Management Budget |
+| --- | --- | --- |
+| **Custom Amounts** | **No.** Locked strictly to credit value ($0 overage). Cannot be increased or decreased. | **Yes.** You can define any amount (e.g., $100, $5,000/month). |
+| **Availability** | Only available on credit-backed subscriptions (Free, Visual Studio). | Available on all enterprise and paid subscriptions (Pay-As-You-Go, EA, MCA). |
+| **Behavior at Threshold** | **Hard Stop:** Automatically shuts down/deallocates compute resources to prevent debt. | **Soft Stop / Notification:** Sends email alerts, fires webhooks, or triggers an Action Group. Does **not** shut down resources by default. |
+| **Adjustment Options** | Toggle only: **On** or **Off (Removed)**. | Edit, increment, or decrement the numerical limit at any time. |
+
+---
+
+### Example Scenario
+
+1. You activate an Azure Free Trial with $200 in credits. The **Spending Limit** is enabled by default at $0 out-of-pocket.
+2. You deploy a series of test virtual machines that consume $200 over 18 days.
+3. On day 19, the remaining balance hits $0. Azure instantly deallocates all VMs.
+4. You want the VMs back online, but you only want to risk spending up to $25 this month.
+* **Can you edit the Spending Limit to $25?** No. The portal does not permit entering a custom numerical limit.
+* **What must you do?** You must remove the spending limit entirely (agreeing to pay standard Pay-As-You-Go rates on your card). To protect yourself, you configure an **Azure Budget** for $25 with automated email alerts set at 80% ($20) and 100% ($25).
+
+
+## Q361
+
+![Q361](/dump/question-images/q351-400/q361.png)
+
+
+
+## Q362
+
+![Q362](/dump/question-images/q351-400/q362.png)
+
+
+
+## Q363
+
+![Q363](/dump/question-images/q351-400/q363.png)
+
+## Q364
+![Q364](/dump/question-images/q351-400/q364.png)
+
+
+## Q365
+
+![Q365](/dump/question-images/q351-400/q365.png)
+
+
+
+## Q366
+
+![Q366](/dump/question-images/q351-400/q366.png)
+
+
+## Q367
+
+![Q367](/dump/question-images/q351-400/q367.png)
+
+
+## Q368
+
+![Q368](/dump/question-images/q351-400/q368.png)
+
+
+
+## Q369
+
+![Q369](/dump/question-images/q351-400/q369.png)
+
+
+
+## Q370
+![Q370](/dump/question-images/q351-400/q370.png)
+
+
+## Q371
+
+![Q371](/dump/question-images/q351-400/q371.png)
+
+
+## Q372
+
+![Q372](/dump/question-images/q351-400/q372.png)
+
+
+
+## Q373
+![Q373](/dump/question-images/q351-400/q373.png)
+
+
+## Q374
+![Q374](/dump/question-images/q351-400/q374.png)
+
+
+
+## Q375
+
+![Q375](/dump/question-images/q351-400/q375.png)
+
+
+## Q376
+
+![Q376](/dump/question-images/q351-400/q376.png)
+
+
+## Q377
+![Q377](/dump/question-images/q351-400/q377.png)
+
+
+## Q378
+![Q378](/dump/question-images/q351-400/q378.png)
+
+
+## Q379
+
+![Q379](/dump/question-images/q351-400/q379.png)
+
+
+
+## Q380
+
+![Q380](/dump/question-images/q351-400/q380.png)
+
+
+
+## Q381
+
+![Q381](/dump/question-images/q351-400/q381.png)
+
+
+
+## Q382
+
+![Q382](/dump/question-images/q351-400/q382.png)
+
+
+
+## Q383
+![Q383](/dump/question-images/q351-400/q383.png)
+
+
+
+## Q384
+![Q384](/dump/question-images/q351-400/q384.png)
+
+
+
+## Q385
+
+![Q385](/dump/question-images/q351-400/q385.png)
+
+
+## Q386
+![Q386](/dump/question-images/q351-400/q386.png)
+
+
+## Q387
+![Q387](/dump/question-images/q351-400/q387.png)
+
+
+## Q388
+![Q388](/dump/question-images/q351-400/q388.png)
+
+
+## Q389
+![Q389](/dump/question-images/q351-400/q389.png)
+
+
+## Q390
+![Q390](/dump/question-images/q351-400/q390.png)
+
+
+## Q391
+
+![Q391](/dump/question-images/q351-400/q391.png)
+
+
+
+## Q392
+![Q392](/dump/question-images/q351-400/q392.png)
+
+
+## Q393
+![Q393](/dump/question-images/q351-400/q393.png)
+
+
+
+## Q394
+
+![Q394](/dump/question-images/q351-400/q394.png)
+
+
+
+## Q395
+![Q395](/dump/question-images/q351-400/q395.png)
+
+
+
+## Q396
+
+![Q396](/dump/question-images/q351-400/q396.png)
+
+
+Azure provides core storage services built on a common platform, each designed for specific workload patterns, data structures, and access methods:
+
+---
+
+### 1. Azure Blob Storage (Object Storage)
+
+Massively scalable object storage for unstructured data (text, images, videos, logs, and backups).
+
+* **Architecture:** Organized into **Storage Account $\rightarrow$ Containers $\rightarrow$ Blobs**.
+* **Blob Types:**
+* **Block Blobs:** Store files, documents, and streaming media (optimized for parallel upload of large blocks).
+* **Append Blobs:** Optimized for append operations (ideal for application logging).
+* **Page Blobs:** Optimized for random read/write operations (serve as virtual hard disk backing for legacy/IaaS VMs).
+
+
+* **Access Tiers (GPv2 / Blob Storage):**
+* **Hot:** Frequently accessed data; highest storage capacity cost, lowest transaction/access cost.
+* **Cool:** Infrequently accessed data (stored $\ge$ 30 days); lower storage cost, higher access cost.
+* **Cold:** Infrequently accessed/rarely modified data (stored $\ge$ 90 days); lower capacity cost than Cool, higher access fee.
+* **Archive:** Offline tier for rarely accessed data (stored $\ge$ 180 days); lowest storage cost, highest access/retrieval cost. Blobs must be *rehydrated* (taking hours) before reading. Set **only at the blob level**.
+
+
+
+---
+
+### 2. Azure Files (Managed File Shares)
+
+Fully managed cloud file shares accessible via standard industry protocols.
+
+* **Protocols:** **SMB 3.x** (Windows, macOS, Linux) and **NFS 4.1** (Linux environments).
+* **Key Use Cases:** "Lift-and-shift" migrations of legacy applications relying on on-premises file shares, centralized home directories, shared application configuration files, and dev/test environments.
+* **Tiers & Deployment:**
+* **Standard (StorageV2):** Backed by HDDs, billed on capacity used.
+* **Premium (`FileStorage`):** Backed by SSDs, provisioned capacity and IOPS, ideal for high-throughput/low-latency I/O (e.g., enterprise databases, container shared storage).
+
+
+* **Azure File Sync:** Replicates and caches Azure file shares locally on Windows Servers for low-latency branch office access.
+
+---
+
+### 3. Azure Managed Disks (Block Storage for VMs)
+
+Block-level storage volumes attached directly to Azure Virtual Machines.
+
+* **Architecture:** Azure handles disk virtualization, abstraction from physical storage clusters, high availability, and replication without requiring manual storage account management.
+* **Disk Tiers:**
+* **Ultra Disk:** Extreme throughput and IOPS (up to 160,000 IOPS) with sub-millisecond latencies for mission-critical transactional databases (e.g., SAP HANA, Oracle).
+* **Premium SSD v2 / Premium SSD:** Enterprise production workloads requiring consistent low-latency performance.
+* **Standard SSD:** Cost-effective, consistent performance for dev/test and web servers with light I/O.
+* **Standard HDD:** Magnetic storage for non-critical workloads, backups, or infrequent access.
+
+
+
+---
+
+### 4. Azure Queue Storage (Asynchronous Messaging)
+
+A lightweight service for storing and retrieving large numbers of messages (up to 64 KB each) for asynchronous inter-service communication.
+
+* **Function:** Decouples distributed application components (e.g., a web front-end queuing background processing tasks for worker nodes).
+* **Scale:** Can hold millions of messages, bounded only by the overall capacity limit of the storage account (typically up to 5 PiB).
+* **Comparison with Service Bus:** Queue Storage provides simple FIFO queue semantics with basic visibility timeouts; Azure Service Bus is an enterprise message broker that supports publish/subscribe topics, transactions, duplicate detection, and dead-letter queues.
+
+---
+
+### 5. Azure Table Storage (NoSQL Key-Value Store)
+
+A schemaless, highly scalable NoSQL datastore for structured, non-relational data.
+
+* **Data Model:** Rows (entities) indexed by a **PartitionKey** and a **RowKey**, alongside custom properties/columns.
+* **Use Cases:** Storing structured datasets that do not require complex foreign key joins, foreign constraints, or complex relational queries (e.g., device metadata, user address books, diagnostic telemetry).
+* **Modern Evolution:** Azure Cosmos DB for Table provides a fully compatible API with turnkey global distribution, dedicated throughput, and guaranteed sub-10ms latencies.
+
+---
+
+### 6. Storage Account Kinds Summary
+
+| Account Kind | Supported Services | Performance Tier | Primary Workloads |
+| --- | --- | --- | --- |
+| **General-purpose v2 (StorageV2)** | Blobs, Files, Queues, Tables, Data Lake Gen2 | Standard (HDD) | Standard default for almost all Azure workloads requiring standard pricing and lifecycle management. |
+| **BlockBlobStorage** | Block Blobs, Append Blobs | Premium (SSD) | High-transaction applications, real-time analytics, high compute I/O. |
+| **FileStorage** | Azure Files only (SMB/NFS) | Premium (SSD) | Enterprise file shares, low-latency container volumes, software build shares. |
+| **PageBlobStorage** | Page Blobs only | Premium (SSD) | Specialized unmanaged VHD storage and random read/write logging. |
+
+
+
+## Q397
+![Q397](/dump/question-images/q351-400/q397.png)
+
+
+## Q398
+![Q398](/dump/question-images/q351-400/q398.png)
+
+
+
+## Q399
+![Q399](/dump/question-images/q351-400/q399.png)
+![Q399](/dump/question-images/q351-400/q399v2.png)
+
+### 1. Extracted Question Summary
+
+**Question: 399 (HOTSPOT)**
+
+* **Scenario:** You need to create a new Azure file share.
+
+
+* **Question:** What should you use? To answer, select the service in the answer area.
+
+
+* **Visible Services/Tiles:**
+
+
+* Resource groups
+
+
+* Quickstart Center
+
+
+* App Services
+
+
+* Function App
+
+
+* SQL Databases
+
+
+* Azure Cosmos DB
+
+
+* Virtual machines
+
+
+* Load balancers
+
+
+* Storage accounts
+
+
+* Virtual networks
+
+
+* Azure Active Directory
+
+
+* Monitor
+
+
+* Advisor
+
+
+* Microsoft Defender for Cloud
+
+
+* Help + support
+
+
+* Cost Management + Billing
+
+
+
+
+
+---
+
+### 2. Correct Answer
+
+* **Service Selection:** **Storage accounts**
+
+
+
+---
+
+### 3. Verification of Visible Selection / Community Key
+
+*(Skipped — no specific service tile is highlighted or selected in the uploaded screenshot)*
+
+---
+
+### 4. Official Microsoft Justification
+
+* **Azure Storage Platform Hierarchy:** Azure Files provides fully managed serverless file shares in the cloud accessible via SMB and NFS protocols.
+* To provision an Azure file share, you must create it inside an **Azure Storage account** (either a Standard General-purpose v2 account or a Premium `FileStorage` account). The storage account provides the namespace, regional placement, performance tier, and security boundary for the file share.
+
+---
+
+### 5. Distractor Analysis (Why Others Are Wrong)
+
+* **Resource groups:** Logical deployment and governance containers for grouping lifecycle-managed Azure assets; you cannot directly host or configure a file share on a resource group without creating a storage account inside it first.
+
+
+* **Virtual machines:** Infrastructure-as-a-Service compute resources; while VMs can mount Azure file shares, the managed cloud share service itself is not created under the Virtual Machines service blade.
+
+
+* **Virtual networks:** Provide private network isolation and address spaces; they do not store or host data files.
+
+
+* **Azure Active Directory (Microsoft Entra ID):** Identity and access management provider; used for identity-based Kerberos authentication to file shares, but not the service used to create the shares.
+
+
+* **App Services / Function App:** Platform-as-a-Service hosting environments for web applications and serverless event-driven code, not storage repository endpoints.
+
+
+
+---
+
+### 6. Exam Keyword / Trap Alert
+
+* For any question asking where to create or host **Blob containers**, **Azure file shares**, **Queues**, or **Tables**, the parent resource you must always select in the Azure portal is **Storage accounts**.
+
+
+
+## Q400
+
+![Q400](/dump/question-images/q351-400/q400.png)
+
+
+## Q401
+![Q401](/dump/question-images/q401-450/q401.png)
+
+
+## Q402
+![Q402](/dump/question-images/q401-450/q402.png)
+
+
+## Q403
+![Q403](/dump/question-images/q401-450/q403.png)
+
+
+## Q404
+![Q404](/dump/question-images/q401-450/q404.png)
+
+
+## Q405
+![Q405](/dump/question-images/q401-450/q405.png)
+
+## Q406
+![Q406](/dump/question-images/q401-450/q406.png)
+
+
+## Q407
+![Q407](/dump/question-images/q401-450/q407.png)
+
+## Q408
+![Q409](/dump/question-images/q401-450/q408.png)
+
+
+## Q409
+![Q409](/dump/question-images/q401-450/q409.png)
+
+
+
+## Q410
+![Q410](/dump/question-images/q401-450/q410.png)
+
+
+
+## Q411
+![Q411](/dump/question-images/q401-450/q411.png)
+
+
+## Q412
+![Q412](/dump/question-images/q401-450/q412.png)
+
+
+## Q413
+![Q413](/dump/question-images/q401-450/q413.png)
+
+
+
+## Q414
+![Q414](/dump/question-images/q401-450/q414.png)
+
+
+
+## Q415
+![Q415](/dump/question-images/q401-450/q415.png)
+
+
+
+## Q416
+![Q416](/dump/question-images/q401-450/q416.png)
+
+
+## Q417
+![Q417](/dump/question-images/q401-450/q417.png)
+
+
+
+## Q418
+![Q418](/dump/question-images/q401-450/q418.png)
+
+
+## Q419
+![Q419](/dump/question-images/q401-450/q419.png)
+
+
+
+## Q420
+![Q420](/dump/question-images/q401-450/q420.png)
+
+
+## Q421
+![Q421](/dump/question-images/q401-450/q421.png)
+
+
+## Q422
+![Q422](/dump/question-images/q401-450/q422.png)
+
+
+
+## Q423
+![Q423](/dump/question-images/q401-450/q423.png)
+
+
+
+## Q424
+![Q424](/dump/question-images/q401-450/q424.png)
+
+
+
+## Q425
+![Q425](/dump/question-images/q401-450/q425.png)
+
+
+
+## Q426
+![Q426](/dump/question-images/q401-450/q426.png)
+
+
+
+## Q427
+![Q427](/dump/question-images/q401-450/q427.png)
+
+
+## Q428
+![Q428](/dump/question-images/q401-450/q428.png)
+
+
+## Q429
+![Q429](/dump/question-images/q401-450/q429.png)
+
+
+## Q430
+![Q430](/dump/question-images/q401-450/q430.png)
+
