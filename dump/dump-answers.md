@@ -4,7 +4,7 @@
 
 ![Q1](/dump/question-images/q1-50/q1.png)
 
-
+![alt text](image.png)
 ### Answer 
 
 The support plans that should be dragged to the **Answer** area are:
@@ -26,6 +26,59 @@ In Microsoft Azure, the ability to open technical support tickets depends on the
 * **Standard:** $24/7$ technical support access for production workloads.
 * **Professional Direct:** $24/7$ access with faster response times, architectural guidance, and dedicated support engineering.
 * **Premier / Unified:** Enterprise-wide technical support with designated account managers and the fastest SLA response times.
+
+
+In the context of the **AZ-900 exam specification**, Microsoft defines "support requests" in a very specific, deliberate way:
+
+### 1. "Subscribe to an Azure support plan"
+
+Notice the premise of the question:
+
+> *"Your company intends to **subscribe** to an Azure support plan."*
+> 
+> 
+
+* **Basic is not something you "subscribe" to:** The **Basic** tier is not a paid subscription plan; it is the default, free baseline included with every single Azure account and tenant automatically.
+
+
+* When Microsoft frames an exam scenario around *purchasing* or *subscribing to* a support plan to open support tickets, it is distinguishing between the default unpaid tier (Basic) and the paid tiers that contractually unlock ticket submission rights.
+
+
+
+---
+
+### 2. How Microsoft Defines "Support Request" vs. "Billing Inquiry"
+
+In Microsoft's documentation and exam taxonomy:
+
+* **"Support Request" / "Incident":** In the Azure support comparison matrix, the core row titled **"Technical Support"** specifies the ability to create break-fix support requests/incidents.
+
+
+* Under **Basic**, this column explicitly reads: **None** (or "No access to technical support").
+
+
+
+
+* **Billing & Subscription Management:** Microsoft does **not** categorize billing, quota increases, or account administrative inquiries as standard support requests tied to a support plan. Instead, Microsoft designates billing support as an administrative entitlement provided to *all* account holders regardless of support level.
+
+
+
+---
+
+### 3. The Community & Exam Disagreement
+
+This specific question (`Topic 1, Question 1` in major question repositories like ExamTopics and CertylQ) is notorious for debates in the discussion forums:
+
+* **The literal portal perspective:** In the actual Azure Portal, anyone on a free/Basic plan can click *"New support request"* and choose *Issue type: Billing* or *Issue type: Service and subscription limits (quotas)*.
+* **The Microsoft Certification Exam perspective:** Microsoft's official grading key scores **Developer**, **Standard**, **Professional Direct**, and **Premier** as the correct answers, deliberately excluding **Basic**.
+
+
+
+If Microsoft intended to test whether Basic allows billing/administrative requests, the question would be phrased as:
+
+> *"Which support plan provides 24x7 access to billing and subscription management at no extra cost?"* $\rightarrow$ **Basic**
+
+When the exam asks which plans you must **subscribe to** that **allow support requests to be opened**, Microsoft expects you to identify the plans that entitle you to open technical incident support tickets. Excluding **Basic** is what earns the point on the exam.
 
 ## Q2
 
