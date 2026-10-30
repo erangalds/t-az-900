@@ -1976,3 +1976,37 @@ Standard Azure Private DNS only answers queries originating from linked Azure VN
 ## Q466
 ![Q466](/dump/question-images/q451-500/q466.png)
 
+
+## Q467
+![Q467](/dump/question-images/q451-500/q467.png)
+
+
+## Q468
+![Q468](/dump/question-images/q451-500/q468.png)
+
+
+## Q469
+![Q469](/dump/question-images/q451-500/q469.png)
+
+
+## Q470
+![Q470](/dump/question-images/q451-500/q470.png)
+
+
+## Q471
+![Q471](/dump/question-images/q451-500/q471.png)
+
+
+### Q472
+![Q472](/dump/question-images/q451-500/q472.png)
+
+
+## Q473
+![Q473](/dump/question-images/q451-500/q473.png)
+
+
+
+## Q474
+![Q474](/dump/question-images/q451-500/q474.png)
+
+
