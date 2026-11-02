@@ -318,7 +318,6 @@ When the exam asks which plans you must **subscribe to** that **allow support re
 
 ![Q5](/dump/question-images/q1-50/q5.png)
 
-
 ### Answer
 
 ### 1. Extracted Question Summary
@@ -389,6 +388,7 @@ When the exam asks which plans you must **subscribe to** that **allow support re
 ## Q6
 
 ![Q6](/dump/question-images/q1-50/q6.png)
+
 
 ### Answer
 
