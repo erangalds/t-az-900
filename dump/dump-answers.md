@@ -8947,13 +8947,13 @@ $$0.9995 \times 0.9999 = 0.99940005 \approx 99.94\%$$
 
 ## Q351
 
-![Q351](/dump/question-images/q301-350/q351.png)
+![Q351](/dump/question-images/q351-400/q351.png)
 
 
 
 ## Q352
 
-![Q352](/dump/question-images/q301-350/q352.png)
+![Q352](/dump/question-images/q351-400/q352.png)
 
 
 ## Q353
